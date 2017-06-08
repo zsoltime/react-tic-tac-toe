@@ -3,21 +3,23 @@
 }
 
 body {
-  background: #f7f7f7;
+  background-color: #f7f7f7;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.8);
-  font-family: 'Open Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Source Sans Pro', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
   margin: 0;
 }
 
 .game {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  min-height: 100vh;
 }
 
 .page-title {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  font-weight: 400;
   margin: 0 auto 1rem;
   text-align: center;
 }
@@ -25,21 +27,40 @@ body {
 .players {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  width: 75%;
+}
+
+.player {
+  border-bottom: 1px solid transparent;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 1.25rem;
+  font-weight: 900;
+  transition: color .3s ease-in-out, border .3s ease-in-out;
+}
+
+.player--active {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.player__points {
+  font-weight: 400;
 }
 
 .status {
   color: rgba(0, 0, 0, 0.5);
-  font-size: 0.75rem;
+  letter-spacing: 0.2rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .board {
-  background: #ee4e88;
+  background-color: #ee4e88;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   display: flex;
-  height: 60vmin;
-  margin: auto;
+  margin: 0 auto 1rem;
+  padding: 1rem;
   width: 100%;
 }
 
@@ -47,26 +68,35 @@ body {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  height: 50vmin;
+  height: 76vmin;
   justify-content: space-between;
   margin: auto;
-  width: 50vmin;
+  width: 76vmin;
 }
 
 .cell {
   align-items: center;
+  background-color: transparent;
   border: 3px solid rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
   display: flex;
-  font-size: 12vmin;
+  font-family: Kalam;
+  font-size: 18vmin;
+  font-weight: 700;
   height: 33.33333%;
   justify-content: center;
+  line-height: 28vmin;
   user-select: none;
   width: 33.33333%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.cell-O {
+.cell:focus {
+  outline: thin dotted;
+}
+
+.cell--O {
   color: #ffe0b2;
 }
 
@@ -84,6 +114,10 @@ body {
 
 .cell:nth-child(3n-2) {
   border-left: 0;
+}
+
+.cell--marked {
+  animation: .2s cubic-bezier(1, 0.85, 0.5, 1.75) forwards grow;
 }
 
 .btn {
@@ -106,4 +140,33 @@ body {
 
 .btn--restart:focus {
   outline: thin dotted;
+}
+
+@keyframes grow {
+  from {
+    font-size: 0.1vmin;
+  }
+  to {
+    font-size: 18vmin;
+  }
+}
+
+@media (orientation: landscape) {
+  .cells {
+    height: 50vmin;
+    width: 50vmin;
+  }
+
+  .cell {
+    font-size: 12vmin;
+  }
+
+  @keyframes grow {
+    from {
+      font-size: 0.1vmin;
+    }
+    to {
+      font-size: 12vmin;
+    }
+  }
 }

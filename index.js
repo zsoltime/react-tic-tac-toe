@@ -1,11 +1,11 @@
-const Cell = (props) => {
-  const classlist = 'cell' + (props.value ? ' cell-' + props.value : '');
-  return (
-    <div className={classlist} onClick={props.onClick}>
-      {props.value}
-    </div>
-  );
-};
+const Cell = (props) => (
+  <button
+    className={'cell' + (props.value ? ` cell--marked cell--${props.value}` : '')}
+    onClick={props.onClick}
+  >
+    {props.value}
+  </button>
+);
 
 const Board = (props) => {
   const board = props.cells.map((cell, i) => {
@@ -30,11 +30,11 @@ const Board = (props) => {
 const Players = (props) => {
   return (
     <div className="players">
-      <div className={'player player-x' + (props.xIsNext ? ' player-active' : '')}>
-        X <span className="player__points">{props.points.X}</span>
+      <div className={'player player--x' + (props.xIsNext ? ' player--active' : '')}>
+        X <span className="player__points">{props.points.X}pts</span>
       </div>
-      <div className={'player player-o' + (props.xIsNext ? '' : ' player-active')}>
-        O <span className="player__points">{props.points.O}</span>
+      <div className={'player player--o' + (props.xIsNext ? '' : ' player--active')}>
+        O <span className="player__points">{props.points.O}pts</span>
       </div>
     </div>
   );
@@ -43,7 +43,7 @@ const Players = (props) => {
 const Status = (props) => {
   let content = '';
   if (props.cells.filter(x => x).length === 0) {
-    content = 'Start game or select player';
+    content = 'Start game';
   } else if (props.winner) {
     content = 'Game over';
   } else {
